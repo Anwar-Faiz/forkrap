@@ -21,6 +21,7 @@ namespace ForkRap
                 System.Console.WriteLine("ForkRap: [Help]");
                 System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
                 System.Console.WriteLine("More details to be added ...");
+                return;
             }
             if (args.Length >3)
             {
@@ -28,12 +29,14 @@ namespace ForkRap
                 System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
                 return;
             }
+            /* 
             if (args.Length != 3)
             {
                 System.Console.WriteLine("Error: Please provide all parameters in correct order.");
                 System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
                 return;
             }
+            */
 
             // The main program logic starts
             String api;
@@ -48,12 +51,16 @@ namespace ForkRap
             }
             catch (Exception e)
             {
-                System.Console.WriteLine("Exception is thrown : " + e);
+                System.Console.WriteLine("Error: Input Parameters are invalid!");
+                System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
+                System.Console.WriteLine("Exception Stacktrace :\n" + e);
                 return;
             }
 
             // Calling loopThrough class constructor and initializing parameters
             LoopThrough loopThrough = new LoopThrough(api, times, destination);
+
+            System.Console.WriteLine(loopThrough.getRap());
 
 
 
