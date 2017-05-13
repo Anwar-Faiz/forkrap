@@ -17,6 +17,8 @@ namespace ForkRap
         public static int threadsOpened = 0;
         public static int threadsClosed = 0;
 
+        public static Boolean noWaitMode = false;
+
         public LoopThrough(String api, int times, String destination)
         {
             this.api = api;
@@ -28,8 +30,22 @@ namespace ForkRap
         {
             // Forking a new client
             threadsOpened++;
-            HttpClient client = new HttpClient();
+            HttpClient client;
             String responseString = null;
+
+            try
+            {
+                client = new HttpClient();
+            }
+            catch(Exception e)
+            {
+                System.Console.WriteLine("Error Stacktrace : " + e.ToString());
+                responseString = "**Error: HttpClient can't be initiated**";
+                callback(responseString);
+                System.Console.WriteLine("<-- end thread : " + threadNum.ToString());
+                threadsClosed++;
+                return;
+            }
 
             // Setting headers of request
             client.BaseAddress = new Uri(api);
@@ -49,9 +65,12 @@ namespace ForkRap
             {
                 System.Console.WriteLine("Error Stacktrace : " + e.ToString());
                 responseString = "**Error: Possible Network Issue**";
+                callback(responseString);
+                System.Console.WriteLine("<-- end thread : " + threadNum.ToString());
+                threadsClosed++;
+                return;
             }
             
-
             // execute the call back function
             callback(responseString);
             System.Console.WriteLine("<-- end thread : " + threadNum.ToString());
@@ -64,8 +83,16 @@ namespace ForkRap
 
             for(int i=0;i<times;i++)
             {
-                System.Console.WriteLine("\n--> Executing thread : " + i.ToString());
-                RunAsync(api, i, callbackFunction);
+                System.Console.WriteLine("\n--> Spawning new thread : " + i.ToString());
+
+                if(noWaitMode == true)
+                {
+                    RunAsync(api, i, callbackFunction);
+                }
+                else
+                {
+                    RunAsync(api, i, callbackFunction).Wait();
+                }
             }
         }
     }
