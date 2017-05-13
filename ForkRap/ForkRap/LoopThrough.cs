@@ -14,8 +14,6 @@ namespace ForkRap
         private int times = 1;
         private String destination = "./output";
 
-        private HttpClient client;
-
         public LoopThrough(String api, int times, String destination)
         {
             this.api = api;
@@ -23,7 +21,7 @@ namespace ForkRap
             this.destination = destination;
         }
 
-        static async Task RunAsync(String api)
+        static async Task RunAsync(String api, Action<string> callback)
         {
             // Forking a new client
             HttpClient client = new HttpClient();
@@ -41,15 +39,16 @@ namespace ForkRap
                 responseString = await response.Content.ReadAsStringAsync();
             }
 
-            // return responseString;
-
+            // execute the call back function
+            callback(responseString);
         }
 
-        public String getRap()
+        public void getRap()
         {
-            RunAsync(api).Wait();
+            Action<String> callbackFunction = WhenResponseCameClass.PrintResponseAsString;
+            RunAsync(api, callbackFunction).Wait();
 
-            return "Test String Response";
+            // return "Test String Response";
         }
     }
 }

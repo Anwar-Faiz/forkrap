@@ -52,9 +52,7 @@ namespace ForkRap
             // Calling loopThrough class constructor and initializing parameters
             LoopThrough loopThrough = new LoopThrough(api, times, destination);
 
-            System.Console.WriteLine(loopThrough.getRap());
-
-
+            loopThrough.getRap();
 
 
             // Stopping console to read result
