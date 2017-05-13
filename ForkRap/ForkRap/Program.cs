@@ -25,9 +25,16 @@ namespace ForkRap
             }
             if (args.Length >3)
             {
-                System.Console.WriteLine("Error: Do not get fancy with extra parameters. Please correct!");
-                System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
-                return;
+                if(args[3] == "--noWait" || args[3] == "--nowait" || args[3] == "--NOWAIT" || args[3] == "--NoWait")
+                {
+                    LoopThrough.noWaitMode = true;
+                }
+                else
+                {
+                    System.Console.WriteLine("Error: Do not get fancy with extra parameters. Please correct!");
+                    System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
+                    return;
+                }
             }
 
             // The Main program logic starts
