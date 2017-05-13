@@ -46,6 +46,7 @@
     <Compile Include="LoopThrough.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SafeFileIO.cs" />
     <Compile Include="WhenResponseCameClass.cs" />
   </ItemGroup>
   <ItemGroup>
