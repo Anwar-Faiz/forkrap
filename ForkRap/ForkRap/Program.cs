@@ -58,7 +58,7 @@ namespace ForkRap
             // validating Uri of Api send
             Uri uri = null;
             bool result = Uri.TryCreate(api, UriKind.Absolute, out uri)
-                && uri.Scheme == Uri.UriSchemeHttp;
+                && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
             if (!result)
             {
                 System.Console.WriteLine("Error: URI of Api send is incorrect. Please check!\n");
