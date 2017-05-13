@@ -22,6 +22,13 @@ namespace ForkRap
                 System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
                 System.Console.WriteLine("More details to be added ...");
             }
+            if (args.Length >3)
+            {
+                System.Console.WriteLine("Error: Do not get fancy with extra parameters. Please correct!");
+                System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
+                return;
+            }
+
 
 
 
