@@ -67,7 +67,7 @@ namespace ForkRap
             }
 
             // Calling loopThrough class constructor and initializing parameters with Uri, times and destination.
-            LoopThrough loopThrough = new LoopThrough(uri, times, destination);
+            LoopThrough loopThrough = new LoopThrough(uri.ToString(), times, destination);
 
             loopThrough.getRap();
 
