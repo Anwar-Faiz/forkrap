@@ -30,10 +30,10 @@ namespace ForkRap
                 return;
             }
 
-            // The main program logic starts
+            // The Main program logic starts
             String api;
             int times;
-            String destination = "./output";
+            String destination;
 
             try
             {
@@ -46,6 +46,23 @@ namespace ForkRap
                 System.Console.WriteLine("Error: Input Parameters are invalid!");
                 System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
                 System.Console.WriteLine("Exception Stacktrace :\n" + e);
+                return;
+            }
+
+            // Checking destination folder or creating it if not present using SafeFileIO Class
+            SafeFileIO.IfPathNotExistsCreateIt(destination);
+            
+            // minimum times should be 1
+            if (times <= 0) { times = 1; }
+
+            // validating Uri of Api send
+            Uri uri = null;
+            bool result = Uri.TryCreate(api, UriKind.Absolute, out uri)
+                && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
+            if (!result)
+            {
+                System.Console.WriteLine("Error: URI of Api send is incorrect. Please check!\n");
+                System.Console.WriteLine("URI Syntax: http://<api or webs service address> ?param1=value1&param2=value2...");
                 return;
             }
 

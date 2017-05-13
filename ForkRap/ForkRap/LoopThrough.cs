@@ -11,8 +11,8 @@ namespace ForkRap
     class LoopThrough
     {
         private String api = null;
-        private int times = 1;
-        private String destination = "./output";
+        private int times = 0;
+        private String destination = null;
 
         public LoopThrough(String api, int times, String destination)
         {
@@ -46,9 +46,11 @@ namespace ForkRap
         public void getRap()
         {
             Action<String> callbackFunction = WhenResponseCameClass.PrintResponseAsString;
-            RunAsync(api, callbackFunction).Wait();
 
-            // return "Test String Response";
+            for(int i=0;i<times;i++)
+            {
+                RunAsync(api, callbackFunction).Wait();
+            }
         }
     }
 }
