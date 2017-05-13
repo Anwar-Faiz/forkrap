@@ -36,13 +36,13 @@ namespace ForkRap
             }
 
             // The main program logic starts
-            String url;
+            String api;
             int times;
             String destination = "./output";
 
             try
             {
-                url = args[0];
+                api = args[0];
                 times = int.Parse(args[1]);
                 destination = args[2];
             }
@@ -53,7 +53,7 @@ namespace ForkRap
             }
 
             // Calling loopThrough class constructor and initializing parameters
-            LoopThrough loopThrough = new LoopThrough(url, times, destination);
+            LoopThrough loopThrough = new LoopThrough(api, times, destination);
 
 
 

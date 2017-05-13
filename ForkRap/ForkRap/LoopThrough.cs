@@ -8,13 +8,13 @@ namespace ForkRap
 {
     class LoopThrough
     {
-        private String url = null;
+        private String api = null;
         private int times = 1;
         private String destination = "./output";
 
-        public LoopThrough(String url, int times, String destination)
+        public LoopThrough(String api, int times, String destination)
         {
-            this.url = url;
+            this.api = api;
             this.times = times;
             this.destination = destination;
         }
