@@ -29,14 +29,6 @@ namespace ForkRap
                 System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
                 return;
             }
-            /* 
-            if (args.Length != 3)
-            {
-                System.Console.WriteLine("Error: Please provide all parameters in correct order.");
-                System.Console.WriteLine("Syntax: forkwrap <url> <number_of_times> <destination_folder_path>");
-                return;
-            }
-            */
 
             // The main program logic starts
             String api;
