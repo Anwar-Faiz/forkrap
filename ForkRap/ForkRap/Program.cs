@@ -66,8 +66,8 @@ namespace ForkRap
                 return;
             }
 
-            // Calling loopThrough class constructor and initializing parameters
-            LoopThrough loopThrough = new LoopThrough(api, times, destination);
+            // Calling loopThrough class constructor and initializing parameters with Uri, times and destination.
+            LoopThrough loopThrough = new LoopThrough(uri, times, destination);
 
             loopThrough.getRap();
 
