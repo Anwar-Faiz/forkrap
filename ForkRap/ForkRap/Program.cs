@@ -68,12 +68,16 @@ namespace ForkRap
 
             // Calling loopThrough class constructor and initializing parameters with Uri, times and destination.
             LoopThrough loopThrough = new LoopThrough(uri.ToString(), times, destination);
-
             loopThrough.getRap();
 
-
-            // Stopping console to read result
-            Console.ReadKey();
+            // Detecting end of all threads execution
+            if(true)
+            {
+                System.Console.WriteLine("\n\n[Multithreading Summary]");
+                System.Console.WriteLine("[Threads opened : " + LoopThrough.threadsOpened.ToString() + "]");
+                System.Console.WriteLine("[Threads closed : " + LoopThrough.threadsClosed.ToString() + "]");
+                System.Console.WriteLine("\n<-- forkrap: Mission accompalished! -->");
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ForkRap
     {
         public static void PrintResponseAsString(String response)
         {
-            Console.WriteLine(response);
+            Console.WriteLine("\n" + response);
         }
     }
 }
