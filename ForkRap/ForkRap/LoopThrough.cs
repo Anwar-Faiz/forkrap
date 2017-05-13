@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,13 +23,33 @@ namespace ForkRap
             this.destination = destination;
         }
 
+        static async Task RunAsync(String api)
+        {
+            // Forking a new client
+            HttpClient client = new HttpClient();
+
+            // Setting headers of request
+            client.BaseAddress = new Uri(api);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Act : Call the Api and get the response
+            String responseString = null;
+            HttpResponseMessage response = await client.GetAsync(api);
+            if (response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+            }
+
+            // return responseString;
+
+        }
+
         public String getRap()
         {
-            client = new HttpClient();
-            
-            var response = client.GetAsync(api);
-            
-            return response.ToString();
+            RunAsync(api).Wait();
+
+            return "Test String Response";
         }
     }
 }
